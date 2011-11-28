@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>js time</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+
+</head>
+
+<body>
+
+    <canvas id="time" style="width: 50px;; height: 50px"></canvas>
+    
+    <button id="click">click</button>
+    
+</body>
+
+<script>
+
+var led = function(canvas) {
+
+    // ctx will never change - get it once and save it in the closure
+    var ctx = canvas.getContext("2d");
+    
+    return function (num) {
+        
+        // the canvas could be resized, so we need to retrieve width/height
+        // on each char draw
+        var w = $(canvas).width();
+        var h = $(canvas).height();
+        
+        alert("drawing number " + num + " : " + w + " / " + h);
+    }
+    
+};
+
+var n = 1;
+var testLed = led(document.getElementById("time"));
+
+$("#click").click(function() {
+    
+        testLed(n);
+        n += 1;
+        
+});
+</script>
+</html>
