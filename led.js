@@ -21,18 +21,18 @@ var led = function(canvas) {
         _(_.zip(syms, symbolMap)).each(function (s) {
             var symbol = s[0];
             var lit = s[1];
-            ctx.strokeStyle = "#aaaaaa";
             
             lit == 0 ? ctx.fillStyle = "#ffffff" : ctx.fillStyle = "#000000";
+            ctx.strokeStyle = "#aaaaaa";
             
             ctx.beginPath();
             ctx.moveTo(symbol[0][0], symbol[0][1]);
-            
             for (var i = 1; i < symbol.length; i++) {
                 ctx.lineTo(symbol[i][0], symbol[i][1]);
             };
-        
             ctx.fill();
+
+            ctx.lineTo(symbol[0][0], symbol[0][1]);
             ctx.stroke();
         
         });
@@ -73,9 +73,9 @@ var makeLedSymbols = function (w, h) {
     // top right
     var tr = [w-margin,margin];
     // center left
-    var cl = [margin, h/2.0 - margin];
+    var cl = [margin, h/2.0];
     // center right
-    var cr = [w-margin, h/2.0 - margin];
+    var cr = [w-margin, h/2.0];
     // bottom left
     var bl = [margin, h-margin];
     // bottom right
