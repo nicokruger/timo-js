@@ -21,23 +21,26 @@
     
     <button id="click">click</button>
     
+    <span id="num">Number</span>
 </body>
 
 <script>
 
 
-var n = 1;
+var n = 0;
 leds = [led(document.getElementById("small")), 
     led(document.getElementById("medium")),
     led(document.getElementById("large"))];
 
 $("#click").click(function() {
     
+        $("#num").html("N: " + n);
+        
         _(leds).each(function (x) {
             x(n);
         });
         n += 1;
-        
+        if (n > 9) n = 0;
 });
 </script>
 </html>

@@ -13,13 +13,18 @@ var led = function(canvas) {
         var syms = makeLedSymbols(w,h);
         
         // Clear
-        ctx.fillStyle = "#0000ff";
+        ctx.fillStyle = "#ffffff";
         ctx.fillRect(0,0,w,h);
         
-        _(syms).each(function (symbol) {
+        var symbolMap = ledSymbolMapping[num];
+        
+        _(_.zip(syms, symbolMap)).each(function (s) {
+            var symbol = s[0];
+            var lit = s[1];
+            ctx.strokeStyle = "#aaaaaa";
             
-            ctx.strokeStyle = "#ff0000";
-            ctx.fillStyle = "#00ff00";
+            lit == 0 ? ctx.fillStyle = "#ffffff" : ctx.fillStyle = "#000000";
+            
             ctx.beginPath();
             ctx.moveTo(symbol[0][0], symbol[0][1]);
             
@@ -33,6 +38,25 @@ var led = function(canvas) {
         });
         
     }   
+};
+
+// This keeps the mapping from int to which symbols should be lit / not-lit in the LED
+//
+// We order the symbols as follows:
+//   - the 3 horizontal symbols in the LED are 0,1,2
+//   - the left vertical symbols are orderered as 3,4 (from the top to bottom)
+//   - the right vertical symbols are then 5,6 (again from top to bottom)
+var ledSymbolMapping = {
+    0: [1, 0, 1, 1, 1, 1, 1],
+    1: [0, 0, 0, 0, 0, 1, 1],
+    2: [1, 1, 1, 0, 1, 1, 0],
+    3: [1, 1, 1, 0, 0, 1, 1],
+    4: [0, 1, 0, 1, 0, 1, 1],
+    5: [1, 1, 1, 1, 0, 0, 1],
+    6: [0, 1, 1, 1, 1, 0, 1],
+    7: [1, 0, 0, 0, 0, 1, 1],
+    8: [1, 1, 1, 1, 1, 1, 1],
+    9: [1, 1, 1, 1, 0, 1, 1]
 };
 
 var makeLedSymbols = function (w, h) {
