@@ -1,6 +1,6 @@
 var timer = (function() {
     
-    var countdownTimer = 0; // simple counter to uniquely ID timers
+    var countdownTimer = 0; // simple counter to uniquely ID LEDs
     
     // where should be a jquery object
     // num - maximum number of characters (numeric)
@@ -10,7 +10,7 @@ var timer = (function() {
         
         
         var leds = _.range(num).map(function (x) {
-            var id = "t" + countdownTimer;
+            var id = "led" + countdownTimer;
             var canvas = where.append('<canvas id="' + id+ '" width="' + w + '" height="' + h + '"></canvas>');
             countdownTimer += 1;
             

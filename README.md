@@ -28,3 +28,17 @@ For python 3, do:
 
 In the main directory and then go to http://localhost:8000, and click the button.
 
+JS Unit Tests
+-------------
+
+You need ruby, and rake installed, then do:
+
+	gem install jasmine
+	gem install jasmine-headless-webkit
+
+Then, in the main directory of the code:
+
+	jasmine-headless-webkit
+
+
+
