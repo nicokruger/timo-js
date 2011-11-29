@@ -40,5 +40,9 @@ Then, in the main directory of the code:
 
 	jasmine-headless-webkit
 
+(If it still doesn't work, you may need to do a
 
+        jasmine init
+
+in the top level dir of the code)
 
