@@ -19,5 +19,10 @@ var convertTime = function (now_millis, then_millis) {
     var minutes = Math.floor( (diff - DAY*days - hours*HOUR) / MINUTE);
     var seconds = Math.floor( (diff - DAY*days - hours*HOUR - minutes*MINUTE) / SECOND);
     
-    return pad(days, 3) + ":" + pad(hours, 2) + ":" + pad(minutes, 2) + ":" + pad(seconds, 2);
+    return {
+        days: pad(days, 3),
+        hours: pad(hours, 2),
+        minutes: pad(minutes, 2),
+        seconds: pad(seconds, 2)
+    }
 }

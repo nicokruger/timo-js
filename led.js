@@ -23,7 +23,7 @@ var led = function(canvas) {
             var lit = s[1];
             
             lit == 0 ? ctx.fillStyle = "#ffffff" : ctx.fillStyle = "#000000";
-            ctx.strokeStyle = "#aaaaaa";
+            ctx.strokeStyle = "#eeeeee";
             
             ctx.beginPath();
             ctx.moveTo(symbol[0][0], symbol[0][1]);
