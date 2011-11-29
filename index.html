@@ -15,13 +15,14 @@
 
 <body>
 
+    <button id="click">click</button>
+    <span id="num">Number</span>
+    
     <canvas id="small" width="50" height="50" ></canvas>
     <canvas id="medium" width="100" height="100" ></canvas>
     <canvas id="large" width="200" height="200" ></canvas>
+    <canvas id="huge" width="400" height="400" ></canvas>
     
-    <button id="click">click</button>
-    
-    <span id="num">Number</span>
 </body>
 
 <script>
@@ -30,7 +31,8 @@
 var n = 0;
 leds = [led(document.getElementById("small")), 
     led(document.getElementById("medium")),
-    led(document.getElementById("large"))];
+    led(document.getElementById("large")),
+    led(document.getElementById("huge"))];
 
 $("#click").click(function() {
     
