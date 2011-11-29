@@ -3,13 +3,21 @@
 
 <head>
     <title>js time</title>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+    
+    <!-- vendor scripts -->
+    <script src="vendor/jquery-1.6.2.min.js"></script>
+    <script src="vendor/underscore.js"></script>
+
+    <!-- led scripts -->
+    <script src="led.js"></script>
 
 </head>
 
 <body>
 
-    <canvas id="time" style="width: 50px;; height: 50px"></canvas>
+    <canvas id="small" width="50" height="50" ></canvas>
+    <canvas id="medium" width="100" height="100" ></canvas>
+    <canvas id="large" width="200" height="200" ></canvas>
     
     <button id="click">click</button>
     
@@ -17,29 +25,17 @@
 
 <script>
 
-var led = function(canvas) {
-
-    // ctx will never change - get it once and save it in the closure
-    var ctx = canvas.getContext("2d");
-    
-    return function (num) {
-        
-        // the canvas could be resized, so we need to retrieve width/height
-        // on each char draw
-        var w = $(canvas).width();
-        var h = $(canvas).height();
-        
-        alert("drawing number " + num + " : " + w + " / " + h);
-    }
-    
-};
 
 var n = 1;
-var testLed = led(document.getElementById("time"));
+leds = [led(document.getElementById("small")), 
+    led(document.getElementById("medium")),
+    led(document.getElementById("large"))];
 
 $("#click").click(function() {
     
-        testLed(n);
+        _(leds).each(function (x) {
+            x(n);
+        });
         n += 1;
         
 });
