@@ -32,12 +32,19 @@ var countdown = (function () {
         $("#" + id).append('<span class="seperator">:</span>');
         $("#" + id).append('<span id="seconds' + id + '"></span>');
         
-        counters.push([
+        var counter = [
             target,
             timer($("#days"+id), 3, 32, 32), 
             timer($("#hours" + id), 2, 32, 32), 
             timer($("#minutes" + id), 2, 32, 32), 
             timer($("#seconds" + id), 2, 32, 32)
-        ]);
+        ]
+        
+        counters.push(counter);
+        
+        counter[1].update("000");
+        counter[2].update("00");
+        counter[3].update("00");
+        counter[4].update("00");
     }
 })();
