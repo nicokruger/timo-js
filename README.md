@@ -1,9 +1,9 @@
-JS/HTML LED
------------
+JS/HTML Time display
+--------------------
 
-Project for LED display of numbers in Javascript.
+Project for nice visual display of numbers in Javascript.
 
-Current implementation uses HTML 5's canvas element to draw.
+Current implementation uses HTML 5's canvas element to draw a LED symbol.
 
 Future work
 ----------
@@ -11,6 +11,10 @@ Future work
   or maybe even try to do it with table cells (screw the purists). It
   is important that it works on older browsers, so this is something
   to look at.
+
+- Other styles of displaying time:
+  	- Analog
+        - Those old school "ticker" time mechanical stuff.
 
 Running
 -------
