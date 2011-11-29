@@ -70,20 +70,20 @@ var makeLedSymbols = function (w, h) {
         ]);
     });
     
-    // the topLeft vertical symbol
-    var topLeftVertical = [
-    ];
+    var verticals = [];
+    _([ [tl, cl], [cl, bl], [tr, cr], [cr, br] ]).each(function (vertline) {
+        var top = vertline[0], bottom = vertline[1];
+        verticals.push([
+            top,
+            [top[0] + symbolThickness, top[1] + arrowLength],
+            [top[0] + symbolThickness, bottom[1] - arrowLength],
+            bottom,
+            [bottom[0] - symbolThickness, bottom[1] - arrowLength],
+            [bottom[0] - symbolThickness, top[1] + arrowLength]
+        ]);
+    });
     
-    var topRightVertical = [
-    ];
-    
-    var bottomLeftVertical = [
-    ];
-    
-    var bottomRightVertical = [
-    ];
-    
-    return horizontals;
+    return horizontals.concat(verticals);
     //return [topHorizontal, centreHorizontal, bottomHorizontal]; //, topLeftVertical, topRightVertical,
         //bottomLeftVertical, bottomRightVertical];
 }
