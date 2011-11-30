@@ -62,11 +62,11 @@ $(function () {
     var t = timer($("#test"), 4, 32, 32);
     
     t.update("1234");
+
+    _(_.range(100)).each(function (i) {
+        countdown($("#counters"), (new Date(2011, 12, i+1)).getTime());
+    });
     
-    countdown($("#counters"), (new Date(2011, 12, 1)).getTime());
-    countdown($("#counters"), (new Date(2011, 12, 2)).getTime());
-    countdown($("#counters"), (new Date(2011, 12, 3)).getTime());
-    countdown($("#counters"), (new Date(2011, 12, 4)).getTime());
 });
 
 </script>

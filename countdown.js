@@ -37,7 +37,8 @@ var countdown = (function () {
             timer($("#days"+id), 3, 32, 32), 
             timer($("#hours" + id), 2, 32, 32), 
             timer($("#minutes" + id), 2, 32, 32), 
-            timer($("#seconds" + id), 2, 32, 32)
+            timer($("#seconds" + id), 2, 32, 32),
+
         ]
         
         counters.push(counter);
