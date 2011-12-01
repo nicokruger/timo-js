@@ -20,8 +20,9 @@ var led = function(canvas) {
         var syms = makeLedSymbols(w,h);
         
         // Clear
-        ctx.fillStyle = "#ffffff";
-        ctx.fillRect(0,0,w,h);
+        //ctx.fillStyle = 'rgba(0, 0, 0, 0.0)';
+        //ctx.fillRect(0,0,w,h);
+        ctx.clearRect(0, 0, w, h);
         
         var symbolMap = ledSymbolMapping[num];
         
@@ -29,8 +30,8 @@ var led = function(canvas) {
             var symbol = s[0];
             var lit = s[1];
             
-            lit == 0 ? ctx.fillStyle = "#ffffff" : ctx.fillStyle = "#000000";
-            ctx.strokeStyle = "#eeeeee";
+            lit == 0 ? ctx.fillStyle = "rgba(200, 200, 200, 0.1)": ctx.fillStyle = "rgba(0, 0, 0, 1.0)";
+            ctx.strokeStyle = "rgba(200, 200, 200, 0.2)";
             
             ctx.beginPath();
             ctx.moveTo(symbol[0][0], symbol[0][1]);

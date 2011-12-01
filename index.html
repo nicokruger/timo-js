@@ -23,7 +23,7 @@
     </style>
 </head>
 
-<body>
+<body style="background-color: #cccccc">
 
     <button id="click">click</button>
     <span id="num">Number</span>
@@ -36,6 +36,9 @@
     <div id="test" style="width:500px;height:100px"></canvas>
     
     <div id="counters"></div>
+    
+        
+    
 </body>
 
 <script>
@@ -64,7 +67,7 @@ $(function () {
     t.update("1234");
 
     _(_.range(100)).each(function (i) {
-        countdown($("#counters"), (new Date(2011, 12, i+1)).getTime());
+        countdown($("#counters"), (new Date(2011, 12, i+1)).getTime(), 32, 32);
     });
     
 });

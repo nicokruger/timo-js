@@ -31,7 +31,7 @@ var countdown = (function () {
     
     var num = 0; // another counter to identify countdowns
     
-    return function (where, target) {
+    return function (where, target, w, h) {
         num+=1;
         var id = "countdown" + num;
         where.append( '<div id="' + id + '"></div>');
@@ -45,10 +45,10 @@ var countdown = (function () {
         
         var counter = [
             target,
-            timer($("#days"+id), 3, 32, 32), 
-            timer($("#hours" + id), 2, 32, 32), 
-            timer($("#minutes" + id), 2, 32, 32), 
-            timer($("#seconds" + id), 2, 32, 32),
+            timer($("#days"+id), 3, w, w), 
+            timer($("#hours" + id), 2, w, h), 
+            timer($("#minutes" + id), 2, w, h), 
+            timer($("#seconds" + id), 2, w, h),
 
         ]
         
