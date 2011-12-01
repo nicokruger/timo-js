@@ -17,6 +17,11 @@ var countdown = (function () {
         _(counters).each(function (counter) {
             var c = convertTime(now, counter[0]);
             
+            // check if timer has expired
+            if (counter[0] < now) {
+                return; // return
+            }
+            
             counter[1].update(pad(c.days, 3));
             counter[2].update(pad(c.hours, 2));
             counter[3].update(pad(c.minutes, 2));
