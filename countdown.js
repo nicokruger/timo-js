@@ -47,7 +47,7 @@ var countdown = (function () {
         
         var counter = [
             target,
-            timer($("#days"+id), 3, w, w, colorscheme), 
+            timer($("#days"+id), 3, w, h, colorscheme), 
             timer($("#hours" + id), 2, w, h, colorscheme), 
             timer($("#minutes" + id), 2, w, h, colorscheme), 
             timer($("#seconds" + id), 2, w, h, colorscheme),
