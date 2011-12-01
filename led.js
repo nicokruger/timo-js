@@ -4,7 +4,7 @@ var led = function(canvas) {
     var ctx = canvas.getContext("2d");
     
     // holds the previous value for this LED
-    var prevValue = undefined;
+    var prevValue = [undefined, undefined, undefined];
     
     return function (num) {
         
