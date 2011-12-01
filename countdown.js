@@ -31,7 +31,9 @@ var countdown = (function () {
     
     var num = 0; // another counter to identify countdowns
     
-    return function (where, target, w, h) {
+    // colorscheme can be undefined, default will be used
+    return function (where, target, w, h, colorscheme) {
+        
         num+=1;
         var id = "countdown" + num;
         where.append( '<div id="' + id + '"></div>');
@@ -45,10 +47,10 @@ var countdown = (function () {
         
         var counter = [
             target,
-            timer($("#days"+id), 3, w, w), 
-            timer($("#hours" + id), 2, w, h), 
-            timer($("#minutes" + id), 2, w, h), 
-            timer($("#seconds" + id), 2, w, h),
+            timer($("#days"+id), 3, w, w, colorscheme), 
+            timer($("#hours" + id), 2, w, h, colorscheme), 
+            timer($("#minutes" + id), 2, w, h, colorscheme), 
+            timer($("#seconds" + id), 2, w, h, colorscheme),
 
         ]
         

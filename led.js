@@ -1,10 +1,18 @@
-var led = function(canvas) {
+var defaultColorscheme = {
+    lit: "rgba(0, 0, 0, 1.0)",
+    unlit: "rgba(255, 255, 255, 0.1)",
+    outline: "rgba(255, 255, 255, 1.0)"
+};
+
+var led = function(canvas, colorscheme) {
 
     // ctx will never change - get it once and save it in the closure
     var ctx = canvas.getContext("2d");
     
     // holds the previous value for this LED
     var prevValue = [undefined, undefined, undefined];
+
+    var cs = colorscheme === undefined ? defaultColorscheme : colorscheme;
     
     return function (num) {
         
@@ -30,8 +38,8 @@ var led = function(canvas) {
             var symbol = s[0];
             var lit = s[1];
             
-            lit == 0 ? ctx.fillStyle = "rgba(200, 200, 200, 0.1)": ctx.fillStyle = "rgba(0, 0, 0, 1.0)";
-            ctx.strokeStyle = "rgba(200, 200, 200, 0.2)";
+            lit == 0 ? ctx.fillStyle = cs.unlit: ctx.fillStyle = cs.lit;
+            ctx.strokeStyle = cs.outline;
             
             ctx.beginPath();
             ctx.moveTo(symbol[0][0], symbol[0][1]);

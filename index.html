@@ -67,7 +67,11 @@ $(function () {
     t.update("1234");
 
     _(_.range(100)).each(function (i) {
-        countdown($("#counters"), (new Date(2011, 12, i+1)).getTime(), 32, 32);
+        countdown($("#counters"), (new Date(2011, 12, i+1)).getTime(), 32, 32, {
+            lit: "rgba(0, 112, 60, 1.0)",
+            unlit: "rgba(0, 0, 0, 0.0)",
+            outline: "rgba(0, 0, 0, 0.0)"
+        })
     });
     
 });

@@ -6,7 +6,7 @@ var timer = (function() {
     // num - maximum number of characters (numeric)
     // w - width of a character
     // h - height of a character
-    return function(where, num, w, h) {
+    return function(where, num, w, h, colorscheme) {
         
         
         var leds = _.range(num).map(function (x) {
@@ -14,7 +14,7 @@ var timer = (function() {
             var canvas = where.append('<canvas id="' + id+ '" width="' + w + '" height="' + h + '"></canvas>');
             countdownTimer += 1;
             
-            return led(document.getElementById(id));
+            return led(document.getElementById(id), colorscheme);
             
         });
         
