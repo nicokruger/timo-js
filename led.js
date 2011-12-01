@@ -8,13 +8,14 @@ var led = function(canvas) {
     
     return function (num) {
         
-        if (num === prevValue) {
-            return; // don't do anything, it's not necessary to redraw
-        }
         // the canvas could be resized, so we need to retrieve width/height
         // on each char draw
         var w = $(canvas).width();
         var h = $(canvas).height();
+        
+        if (_.isEqual([num,w,h], prevValue)) {
+            return; // don't do anything, it's not necessary to redraw
+        }
 
         var syms = makeLedSymbols(w,h);
         
@@ -43,7 +44,7 @@ var led = function(canvas) {
         
         });
         
-        prevValue = num;
+        prevValue = [num, w, h];
     }   
 };
 
