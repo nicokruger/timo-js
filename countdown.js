@@ -12,8 +12,6 @@ var countdown = (function () {
         if (!$(counter[5]).is(":visible")) {
             return;
         }
-        console.log("updating");
-        
         var now = (new Date()).getTime();
         var c = convertTime(now, counter[0]);
         // check if timer has expired
