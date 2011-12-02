@@ -7,25 +7,38 @@ var countdown = (function () {
         return s.length == pads ? ''+num : _(_.range(pads - s.length)).map(function() { return "0" }).join('') + num;
     };
     
+    var updateCounter = function(counter) {
+        // don't do anything if counter is not visible
+        if (!$(counter[5]).is(":visible")) {
+            return;
+        }
+        console.log("updating");
+        
+        var now = (new Date()).getTime();
+        var c = convertTime(now, counter[0]);
+        // check if timer has expired
+        if (counter[0] < now) {
+            c = {
+                days: 0,
+                hours: 0,
+                minutes: 0,
+                seconds: 0
+            }
+        }
+        
+        counter[1].update(pad(c.days, 3));
+        counter[2].update(pad(c.hours, 2));
+        counter[3].update(pad(c.minutes, 2));
+        counter[4].update(pad(c.seconds, 2));
+    }
     // holds all counters
     var counters = [];
-    
+
     // the following code is the *single* function that gets called very second
     // and runs through the countdowns and updates them
     setInterval(function () {
-        var now = (new Date()).getTime();
         _(counters).each(function (counter) {
-            var c = convertTime(now, counter[0]);
-            
-            // check if timer has expired
-            if (counter[0] < now) {
-                return; // return
-            }
-            
-            counter[1].update(pad(c.days, 3));
-            counter[2].update(pad(c.hours, 2));
-            counter[3].update(pad(c.minutes, 2));
-            counter[4].update(pad(c.seconds, 2));
+            updateCounter(counter);
         });
     }, 1000);
     
@@ -51,14 +64,12 @@ var countdown = (function () {
             timer($("#hours" + id), 2, w, h, colorscheme), 
             timer($("#minutes" + id), 2, w, h, colorscheme), 
             timer($("#seconds" + id), 2, w, h, colorscheme),
-
+            where
         ]
         
         counters.push(counter);
         
-        counter[1].update("000");
-        counter[2].update("00");
-        counter[3].update("00");
-        counter[4].update("00");
+        updateCounter(counter);
     }
 })();
+

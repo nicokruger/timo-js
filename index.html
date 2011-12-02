@@ -26,6 +26,7 @@
 <body style="background-color: #cccccc">
 
     <button id="click">click</button>
+    <button id="hide">hide</button>
     <span id="num">Number</span>
     
     <canvas id="small" width="50" height="50" ></canvas>
@@ -62,12 +63,16 @@ $(function () {
             
     });
     
+    $("#hide").click(function () {
+        $("#counters").css("display", "none");
+    });
+    
     var t = timer($("#test"), 4, 32, 32);
     
     t.update("1234");
 
     _(_.range(100)).each(function (i) {
-        countdown($("#counters"), (new Date(2011, 12, i+1)).getTime(), 32, 32, {
+        countdown($("#counters"), (new Date(2011, 12, 1)).getTime(), 32, 32, {
             lit: "rgba(0, 112, 60, 1.0)",
             unlit: "rgba(0, 0, 0, 0.0)",
             outline: "rgba(0, 0, 0, 0.0)"
