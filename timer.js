@@ -14,7 +14,7 @@ var timer = (function() {
             var canvas = where.append('<canvas id="' + id+ '" width="' + w + '" height="' + h + '"></canvas>');
             countdownTimer += 1;
             
-            return led(document.getElementById(id), colorscheme);
+            return led(where.find("#" + id)[0], colorscheme);
             
         });
         
