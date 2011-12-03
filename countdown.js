@@ -48,20 +48,20 @@ var countdown = (function () {
         num+=1;
         var id = "countdown" + num;
         where.append( '<div id="' + id + '"></div>');
-        $("#" + id).append('<span id="days' + id + '"></span>');
-        $("#" + id).append('<span class="seperator">:</span>');
-        $("#" + id).append('<span id="hours' + id + '"></span>');
-        $("#" + id).append('<span class="seperator">:</span>');
-        $("#" + id).append('<span id="minutes'+ id + '"></span>');
-        $("#" + id).append('<span class="seperator">:</span>');
-        $("#" + id).append('<span id="seconds' + id + '"></span>');
+        where.find("#" + id).append('<span id="days' + id + '"></span>');
+        where.find("#" + id).append('<span class="seperator">:</span>');
+        where.find("#" + id).append('<span id="hours' + id + '"></span>');
+        where.find("#" + id).append('<span class="seperator">:</span>');
+        where.find("#" + id).append('<span id="minutes'+ id + '"></span>');
+        where.find("#" + id).append('<span class="seperator">:</span>');
+        where.find("#" + id).append('<span id="seconds' + id + '"></span>');
         
         var counter = [
             target,
-            timer($("#days"+id), 3, w, h, colorscheme), 
-            timer($("#hours" + id), 2, w, h, colorscheme), 
-            timer($("#minutes" + id), 2, w, h, colorscheme), 
-            timer($("#seconds" + id), 2, w, h, colorscheme),
+            timer(where.find("#days"+id), 3, w, h, colorscheme), 
+            timer(where.find("#hours" + id), 2, w, h, colorscheme), 
+            timer(where.find("#minutes" + id), 2, w, h, colorscheme), 
+            timer(where.find("#seconds" + id), 2, w, h, colorscheme),
             where
         ]
         
