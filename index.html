@@ -10,9 +10,8 @@
 
     <!-- led scripts -->
     <script src="led.js"></script>
-    <script src="timer.js"></script>
+    <script src="leds.js"></script>
     <script src="countdown.js"></script>
-    <script src="times.js"></script>
 
     <style type="text/css">
         .seperator {
@@ -40,6 +39,9 @@
     
     <div id="test" style="width:500px;height:100px"></canvas>
     
+    <button id="normal">normal</button>
+    <button id="none">none</button>
+    <button id="led">led</button>
     <div id="counters"></div>
     
         
@@ -50,10 +52,11 @@
 
 $(function () {
     var n = 0;
-    leds = [led(document.getElementById("small")), 
-        led(document.getElementById("medium")),
-        led(document.getElementById("large")),
-        led(document.getElementById("huge"))];
+
+    leds = [timo.led(document.getElementById("small")), 
+        timo.led(document.getElementById("medium")),
+        timo.led(document.getElementById("large")),
+        timo.led(document.getElementById("huge"))];
 
     $("#click").click(function() {
         
@@ -71,18 +74,37 @@ $(function () {
         $("#counters").css("display", "none");
     });
     
-    var t = timer($("#test"), 4, 32, 32);
+    var t = timo.makeled($("#test"), 4, 32, 32);
     
-    t.update("1234");
+    t("1234");
 
+    var formatDate = function (t) {
+        var d = new Date(t);
+        return d.getFullYear() + "-" + timo.pad(d.getMonth()+1,2) + "-" + timo.pad(d.getDay(),2) + " " + timo.pad(d.getHours(),2) + ":" + timo.pad(d.getMinutes(),2) + " UTC";
+    };
     _(_.range(100)).each(function (i) {
-        countdown($("#counters"), (new Date(2011, 12, 1)).getTime(), 32, 32, {
-            lit: "rgba(0, 112, 60, 1.0)",
-            unlit: "rgba(0, 0, 0, 0.0)",
-            outline: "rgba(0, 0, 0, 0.0)"
-        })
+        var target = (new Date(2012, 1, i+1)).getTime();
+        $("#counters").append("<div data-eventdate=\"" + target + "\">" + formatDate(target) + "</div>");
+
     });
-    
+    var theme = {
+        lit: "rgba(255, 0, 0, 1.0)",
+        unlit: "rgba(0, 255, 255, 0.1)",
+        outline: "rgba(0, 0, 255, 1.0)",
+        width: 64,
+        height: 64
+    };
+
+    var cs = timo.counters($("#counters > div"));    
+    $("#normal").click(function () {
+        cs.changeType(timo.normalCounterType); 
+    });
+    $("#none").click(function () {
+        cs.changeType(timo.noCounterType);
+    });
+    $("#led").click(function () {
+        cs.changeType(timo.ledCounterType(theme)); 
+    });
 });
 
 </script>

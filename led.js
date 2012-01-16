@@ -1,10 +1,14 @@
-var defaultColorscheme = {
+if (typeof(timo) === "undefined") timo = {};
+
+timo.ledDefaultColorscheme = {
     lit: "rgba(0, 0, 0, 1.0)",
     unlit: "rgba(255, 255, 255, 0.1)",
-    outline: "rgba(255, 255, 255, 1.0)"
+    outline: "rgba(255, 255, 255, 1.0)",
+    width: 32,
+    height: 32
 };
 
-var led = function(canvas, colorscheme) {
+timo.led = function(canvas, colorscheme) {
 
     // ctx will never change - get it once and save it in the closure
     var ctx = canvas.getContext("2d");
@@ -12,7 +16,7 @@ var led = function(canvas, colorscheme) {
     // holds the previous value for this LED
     var prevValue = [undefined, undefined, undefined];
 
-    var cs = colorscheme === undefined ? defaultColorscheme : colorscheme;
+    var cs = colorscheme === undefined ? timo.ledDefaultColorscheme : colorscheme;
     
     return function (num) {
         
@@ -25,27 +29,27 @@ var led = function(canvas, colorscheme) {
             return; // don't do anything, it's not necessary to redraw
         }
 
-        var syms = makeLedSymbols(w,h);
+        var syms = timo.makeLedSymbols(w,h);
         
         // Clear
         //ctx.fillStyle = 'rgba(0, 0, 0, 0.0)';
         //ctx.fillRect(0,0,w,h);
         ctx.clearRect(0, 0, w, h);
         
-        var symbolMap = ledSymbolMapping[num];
+        var symbolMap = timo.ledSymbolMapping[num];
         
         _(_.zip(syms, symbolMap)).each(function (s) {
             var symbol = s[0];
             var lit = s[1];
             
-            lit == 0 ? ctx.fillStyle = cs.unlit: ctx.fillStyle = cs.lit;
+            ctx.fillStyle = lit === 0 ? cs.unlit : cs.lit;
             ctx.strokeStyle = cs.outline;
             
             ctx.beginPath();
             ctx.moveTo(symbol[0][0], symbol[0][1]);
             for (var i = 1; i < symbol.length; i++) {
                 ctx.lineTo(symbol[i][0], symbol[i][1]);
-            };
+            }
             ctx.fill();
 
             ctx.lineTo(symbol[0][0], symbol[0][1]);
@@ -54,7 +58,7 @@ var led = function(canvas, colorscheme) {
         });
         
         prevValue = [num, w, h];
-    }   
+    };
 };
 
 // This keeps the mapping from int to which symbols should be lit / not-lit in the LED
@@ -63,7 +67,7 @@ var led = function(canvas, colorscheme) {
 //   - the 3 horizontal symbols in the LED are 0,1,2
 //   - the left vertical symbols are orderered as 3,4 (from the top to bottom)
 //   - the right vertical symbols are then 5,6 (again from top to bottom)
-var ledSymbolMapping = {
+timo.ledSymbolMapping = {
     0: [1, 0, 1, 1, 1, 1, 1],
     1: [0, 0, 0, 0, 0, 1, 1],
     2: [1, 1, 1, 0, 1, 1, 0],
@@ -76,7 +80,7 @@ var ledSymbolMapping = {
     9: [1, 1, 1, 1, 0, 1, 1]
 };
 
-var makeLedSymbols = function (w, h) {
+timo.makeLedSymbols = function (w, h) {
     // this should actually be related to w,h, hardcoded for now
     var margin = 4;
     // "thickness" of a symbol in the LED
@@ -102,7 +106,7 @@ var makeLedSymbols = function (w, h) {
     _([ [tl, tr], [cl,cr], [bl, br] ]).each(function (horline) {
         var left = horline[0], right = horline[1];
         horizontals.push([
-            left, 
+            left,
             [left[0] + arrowLength, left[1] - symbolThickness],
             [right[0] - arrowLength, left[1] - symbolThickness],
             right,
@@ -125,4 +129,4 @@ var makeLedSymbols = function (w, h) {
     });
     
     return horizontals.concat(verticals);
-}
+};
