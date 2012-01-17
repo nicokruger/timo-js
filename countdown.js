@@ -30,13 +30,15 @@ timo.normalCounterType = function (where) {
 };
 
 timo.noCounterType = function (where) {
+    var prevContent = $(where).html();
     return {
         time: $(where).attr("data-eventdate"),
         remove: function () {
-            
+            $(where).html(prevContent);
         },
         update: function (days, hours,minutes,seconds) {
-            
+            var m = moment(parseInt($(where).attr("data-eventdate"), 10));
+            $(where).html(m.format("YYYY-MM-DD HH:mm z"));
         }
     };
 };
